@@ -1,14 +1,14 @@
 {
-  "name": "clementinejs-fcc",
+  "name": "polls polls polls",
   "version": "1.0.1",
-  "description": "The elegant and lightweight boilerplate for full stack JavaScript.",
+  "description": "application to create polls.  Code adapted from Clementine.js",
   "main": "server.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/johnstonbl01/clementinejs-fcc"
+    "url": "git+https://github.com/jerwilste/pollspollspolls.git"
   },
-  "homepage": "http://www.clementinejs.com/",
-  "bugs": "https://github.com/johnstonbl01/clementinejs-fcc/issues",
+  "homepage": "",
+  "bugs": "",
   "keywords": [
     "MongoDB",
     "Mongoose",
@@ -21,8 +21,8 @@
   "scripts": {
   "start": "node server.js"
   },
-  "author": "Blake Johnston",
-  "license": "MIT",
+  "author": "Jeremy Stewart",
+  "license": "",
   "dependencies": {
     "dotenv": "^1.2.0",
     "express": "^4.12.4",
