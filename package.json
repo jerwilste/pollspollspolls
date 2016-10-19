@@ -1,34 +1,32 @@
 {
-  "name": "polls polls polls",
-  "version": "1.0.1",
-  "description": "application to create polls.  Code adapted from Clementine.js",
+  "name": "pollspollspolls",
+  "version": "1.0.0",
+  "description": "adapted from Clementine.js",
   "main": "server.js",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "chart.js": "^2.3.0",
+    "dotenv": "^1.2.0",
+    "ejs": "^2.5.2",
+    "express": "^4.14.0",
+    "express-session": "^1.14.1",
+    "mongoose": "^4.6.3",
+    "passport": "^0.3.2",
+    "passport-github": "^1.1.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/jerwilste/pollspollspolls.git"
   },
-  "homepage": "",
-  "bugs": "",
-  "keywords": [
-    "MongoDB",
-    "Mongoose",
-    "full stack",
-    "Express",
-    "Node",
-    "javascript",
-    "boilerplate"
-  ],
-  "scripts": {
-  "start": "node server.js"
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jerwilste/pollspollspolls/issues"
   },
-  "author": "Jeremy Stewart",
-  "license": "",
-  "dependencies": {
-    "dotenv": "^1.2.0",
-    "express": "^4.12.4",
-    "express-session": "^1.11.3",
-    "mongoose": "^4.1.0",
-    "passport": "^0.3.0",
-    "passport-github": "^1.0.0"
-  }
+  "homepage": "https://github.com/jerwilste/pollspollspolls#readme"
 }

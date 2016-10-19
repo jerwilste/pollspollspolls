@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+		<% include ../partials/head %>
+	</head>
+	<body>
+    <header>
+        <% include ../partials/header %>
+    </header>
+			
+	
+			<script>
+				  window.fbAsyncInit = function() {
+				    FB.init({
+				      appId      : '157035738090069',
+				      xfbml      : true,
+				      version    : 'v2.8'
+				    });
+				  
+				    FB.AppEvents.logPageView();
+				  };
+				
+				  (function(d, s, id){
+				     var js, fjs = d.getElementsByTagName(s)[0];
+				     if (d.getElementById(id)) {return;}
+				     js = d.createElement(s); js.id = id;
+				     js.src = "//connect.facebook.net/en_US/sdk.js";
+				     fjs.parentNode.insertBefore(js, fjs);
+				   }(document, 'script', 'facebook-jssdk'));
+				   
+			</script>
+	    	
+			<div id="welcome" class="tc container-fluid"><h2>Welcome to Polls, Polls, Polls...</h2></div>
+	        <div id="app-wrap">
+	        	<% if(list) { %> <div id="myPollList" class=""> 
+	        	<% } else { %> <div id="myPollList" class="hide">
+        		<% } %>
+					<h4 class="tc"><%= user %>'s Polls</h4>
+					<div class="pollList">
+							<% for(var i=0; i<polls.length; i++) {%>
+								<% if(polls[i].owner === user) { %>
+							   		<div class="pollListItem m5 p5" onClick="openPollPage(<%= polls[i].number %>);" id="p<%= polls[i].number %>">Question: "<b><%= polls[i].question %>"</b><br/>
+							   <% var largestI = 0, largestNum = 0;%>
+							   <% for(var j=0; j<polls[i].answers.length; j++) {if (polls[i].answers[j].voteNum > largestNum) {largestI = j; largestNum = polls[i].answers[j].voteNum;} }(i) %>
+							   <span class="winVote">Winning Answer: <b>"<%=polls[i].answers[largestI].answer%>"</b>, <%=largestNum%> votes</span>
+								   	</div>
+							   	<% } %>
+							<% } %>
+					</div>
+				</div>
+				<div id="newPoll" class="hide">
+					<h4 class="tc">Create a New Poll</h4>
+					<form id="pollForm" method="" action="">
+						<div class="form-group">
+						  	<label for="question">Question:</label>
+						    <input class="form-control" type="text" id="question" name="question">
+						</div>
+	  					<div class="form-group">
+						    <label for="textarea">Answers (seperate with a new line):</label>
+						    <textarea class="form-control" id="textarea" rows="3" name="answers"></textarea>
+					  	</div>
+	  					<button type="button" class="btn btn-primary mt5" onclick="newPollClient();">Submit</button> <button class="btn btn-default mt5" onclick="showPollList()">Cancel</button>
+					</form>
+					
+				</div>
+
+				<div id="viewPoll" class="hide">
+					<h4 class="tc">Viewing Poll</h4>
+					<form id="votePoll" method="" action="">
+						<label>Question:</label><div id="pollQuestion"></div>
+						<label for="selectVote" class="mt5">Vote For:</label>
+							<select class="form-control" id="selectVote" name="selectedVote" onchange="checkNewOption()">
+							
+						    </select>
+						    <input id="newOption" type="text" class="hide" placeholder="enter new option"></input>
+						<button type="button" class="btn btn-primary mt5" onclick="addVoteClient();">Submit</button>  
+						<button type="button" class="btn btn-default mt5" onclick="showPollList();">Cancel/Back</button> 
+						<button id="deletePollBtn" type="button" class="hide btn btn-danger mt5" onclick="">Delete Poll</button>
+					</form>
+					<div id="pollOutcomeWrap">
+
+					</div>
+					<canvas id="pieChart"></canvas>
+					<div id="share" class="fb-share-button mt5" data-href="" data-layout="button" data-size="small" data-mobile-iframe="true"><a id="shareA" class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fpollspollspolls-iloanzi.c9users.io&amp;src=sdkpreparse">Share</a></div>
+				</div>
+				<% if(list) { %> <div id="pollListWrap" class="hide"> 
+	        	<% } else { %> <div id="pollListWrap" class="">
+	        	<% } %>
+					<h4 class="tc">Current Polls For All Users</h4>
+					<div class="pollList">
+							
+							<% for(var i=0; i<polls.length; i++) {%>
+							   <div class="pollListItem m5 p5" onClick="openPollPage(<%= polls[i].number %>);" id="p<%= polls[i].number %>">Question: "<b><%= polls[i].question %>"</b><br/>
+							   <% var largestI = 0, largestNum = 0;%>
+							   <% for(var j=0; j<polls[i].answers.length; j++) {if (polls[i].answers[j].voteNum > largestNum) {largestI = j; largestNum = polls[i].answers[j].voteNum;} }(i) %>
+							   <span class="winVote">Winning Answer: <b>"<%=polls[i].answers[largestI].answer%>"</b>, <%=largestNum%> votes</span>
+							   </div>
+							<% } %>
+					</div>
+				</div>
+	        </div>
+	    
+    	<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
+    	<script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js'></script>
+    	<script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.bundle.min.js'></script>
+		<script type="text/javascript" src="common/ajax-functions.js"></script>
+		<!--<script type="text/javascript" src="controllers/clickController.client.js"></script>-->
+		<script type="text/javascript" src="controllers/pollController.client.js"></script>
+		<script type="text/javascript" src="controllers/userController.client.js"></script>
+	</body>
+	<footer>
+        <% include ../partials/footer %>
+    </footer>
+
+</html>

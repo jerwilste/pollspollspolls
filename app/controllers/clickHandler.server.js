@@ -1,11 +1,11 @@
 'use strict';
 
-var Users = require('../models/users.js');
+
 
 function ClickHandler () {
 
 	this.getClicks = function (req, res) {
-		Users
+		User
 			.findOne({ 'github.id': req.user.github.id }, { '_id': false })
 			.exec(function (err, result) {
 				if (err) { throw err; }
@@ -15,7 +15,7 @@ function ClickHandler () {
 	};
 
 	this.addClick = function (req, res) {
-		Users
+		User
 			.findOneAndUpdate({ 'github.id': req.user.github.id }, { $inc: { 'nbrClicks.clicks': 1 } })
 			.exec(function (err, result) {
 					if (err) { throw err; }

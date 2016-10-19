@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+		<% include ../partials/head %>
+	</head>
+	<body>
+    <header>
+        <% include ../partials/header %>
+    </header>
+			
+	
+			<script>
+				  window.fbAsyncInit = function() {
+				    FB.init({
+				      appId      : '157035738090069',
+				      xfbml      : true,
+				      version    : 'v2.8'
+				    });
+				  };
+				
+				  (function(d, s, id){
+				     var js, fjs = d.getElementsByTagName(s)[0];
+				     if (d.getElementById(id)) {return;}
+				     js = d.createElement(s); js.id = id;
+				     js.src = "//connect.facebook.net/en_US/sdk.js";
+				     fjs.parentNode.insertBefore(js, fjs);
+				   }(document, 'script', 'facebook-jssdk'));
+				   
+			</script>
+			
+	    	
+			<div id="welcome" class="tc container-fluid"><h2>Welcome to Polls, Polls, Polls...</h2></div>
+	        <div id="app-wrap">
+
+				<div id="viewPoll" class="">
+					<h4 class="tc">Viewing Poll</h4>
+					<form id="votePoll" method="" action="">
+						<label>Question:</label><div id="pollQuestion"></div>
+						<label for="selectVote" class="mt5">Vote For:</label>
+							<select class="form-control" id="selectVote" name="selectedVote" onchange="checkNewOption()">
+							
+						    </select>
+						    <input id="newOption" type="text" class="hide" placeholder="enter new option"></input>
+						<button type="button" class="btn btn-primary mt5" onclick="addVoteClient();">Submit</button>  
+						<button type="button" class="btn btn-default mt5" onclick="showPollList();">Cancel/Back</button> 
+						<button id="deletePollBtn" type="button" class="hide btn btn-danger mt5" onclick="">Delete Poll</button>
+					</form>
+					<div id="pollOutcomeWrap">
+
+					</div>
+					<div>
+						<canvas id="pieChart"></canvas>
+					</div>
+					<div id="share" class="fb-share-button mt5" data-href="" data-layout="button" data-size="small" data-mobile-iframe="true"><a id="shareA" class="fb-xfbml-parse-ignore" target="_blank" href="">Share</a></div>
+				</div>
+				
+	        </div>
+	    
+    	<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
+    	<script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js'></script>
+    	<script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.bundle.min.js'></script>
+		<script type="text/javascript" src="common/ajax-functions.js"></script>
+		<!--<script type="text/javascript" src="controllers/clickController.client.js"></script>-->
+		<script type="text/javascript" src="controllers/pollController.client.js"></script>
+		<script type="text/javascript" src="controllers/userController.client.js"></script>
+		<script>
+                window.onload = function(){
+                    openPoll('#p<%=linkedPoll%>', '<%=user%>');
+                   //
+                  // console.log('<%=polls[0].question%>');
+                }
+		</script>
+	</body>
+	<footer>
+        <% include ../partials/footer %>
+
+    </footer>
+
+</html>
